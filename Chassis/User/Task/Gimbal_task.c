@@ -15,6 +15,7 @@ extern UP_C_angle_t UP_C_angle;
 
 extern RC_ctrl_t rc_ctrl; // 遥控器信息结构体
 
+extern int8_t pitch1, roll1, yaw1;
 // 云台电机的初始化
 static void Gimbal_loop_Init();
 
@@ -137,9 +138,9 @@ static void gimbal_sta_control()
 
 static void STA_Yaw_control()
 {
-    if (100 > -660 && 100 < 660)
+    if (yaw1 > -660 && yaw1 < 660)
     {
-        gimbal_Yaw.angle_target += 100 / 660.0 * (-0.1);
+        gimbal_Yaw.angle_target += yaw1 / 660.0 * (-0.1);
 
         detel_calc(&gimbal_Yaw.angle_target);
 

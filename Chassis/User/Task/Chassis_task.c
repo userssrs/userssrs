@@ -30,6 +30,7 @@ extern float powerdata[4];
 extern UP_C_angle_t UP_C_angle;
 extern INS_t INS;
 extern ext_power_heat_data_t powerd;
+extern int8_t vx, vy, vw;
 static void Chassis_Power_Limit(double Chassis_pidout_target_limit);
 
 uint8_t rc[18];
@@ -365,9 +366,9 @@ static void key_control(void)
 static void STA_Move(void)
 {
   // 获取特定控制输入
-  chassis.Vx = 100; // 前后输入
-  chassis.Vy = 100; // 左右输入
-  chassis.Wz = 100; // 旋转输入
+  chassis.Vx =  vx; // 前后输入
+  chassis.Vy = vy; // 左右输入
+  chassis.Wz = vw; // 旋转输入
   // 线性映射//
   chassis.Vx = map_range(chassis.Vx, RC_MIN, RC_MAX, motor_min, motor_max);
   chassis.Vy = map_range(chassis.Vy, RC_MIN, RC_MAX, motor_min, motor_max);
